@@ -30,7 +30,8 @@ copilot-autonomy-study/
 │   │   ├── stats.py
 │   │   └── utils.py
 │   └── tests/
-│       └── test_task_a.py
+│      └── test_task_a.py
+│   └── task_a_description.md  
 ├── task_b/
 │   ├── src/
 │   │   ├── models.py
@@ -40,6 +41,7 @@ copilot-autonomy-study/
 │   │   └── utils.py
 │   └── tests/
 │       └── test_task_b.py
+│   └── test_task_a.py
 └── README.md
 ```
 
