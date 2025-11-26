@@ -48,13 +48,15 @@ instructions.
    - Download from: https://www.python.org/downloads/
    - Windows users: Make sure to check “Add Python to PATH” during installation.
 
-2. **Log into GitHub Copilot**
+2. **Log into VS Code/ GitHub Copilot**
 
    - Before cloning the repository:
      - Open VS Code/Please download if not already there.
+     - Sign in with the VS Code provided by the researcher. (Password
+       will be regenerated.) You can keep yours if you already signed in.
      - Install the GitHub Copilot extension (if not installed)
      - Sign in with the GitHub account provided by the researcher. (Password
-       will be regenerated.)
+       will be regenerated)
      - Make sure Copilot is activated
      - You will use the mode assigned to you (Ask or Agent)
 
