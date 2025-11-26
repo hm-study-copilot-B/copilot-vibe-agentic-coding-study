@@ -1,120 +1,157 @@
 # From Collaboration to Delegation
 
-## Evaluating Developer Efficiency and Perception in Vibe and Agentic Coding
+Evaluating Developer Efficiency and Perception in Vibe and Agentic Coding using
+Github Copilot and Gemini 3 Pro.
 
----
+## 🗂️ Repository Purpose
 
-### 🗂️ Repository Purpose
-
-This repository contains two debugging tasks used in a research study comparing
-two levels of AI autonomy in GitHub Copilot:
+This repository contains two small debugging tasks for the research study. The
+goal is to compare how developers work with two levels of AI autonomy in GitHub
+Copilot:
 
 - **Vibe Coding (Copilot Ask Mode)**
 - **Agentic Coding (Copilot Agent Mode)**
 
-Each task corresponds to exactly one mode assigned by the researcher.
-Participants cannot use both modes on the same task. If Task A uses Agent Mode,
-then Task B uses Ask Mode, and vice versa.
+Each task is done using only one mode, assigned by the researcher. If Task A is
+completed with Agent Mode, Task B must be completed with Ask Mode — and the
+other way around. Switching modes or models during a task is not allowed.
 
----
-
-### 📁 Repository Structure
+## 📁 Repository Structure
 
 ```
 copilot-autonomy-study/
 ├── task_a/
 │   ├── src/
-│   │   ├── models.py
-│   │   ├── data_source.py
-│   │   ├── query.py
-│   │   ├── stats.py
-│   │   └── utils.py
-│   └── tests/
-│      └── test_task_a.py
-│   └── task_a_description.md  
+│   ├── tests/
+│   └── task_a_description.md
 ├── task_b/
 │   ├── src/
-│   │   ├── models.py
-│   │   ├── data_source.py
-│   │   ├── schedule.py
-│   │   ├── overdue.py
-│   │   └── utils.py
-│   └── tests/
-│       └── test_task_b.py
-│   └── task_b_description.md  
+│   ├── tests/
+│   └── task_b_description.md
 └── README.md
 ```
 
----
+- `src/` → the code you will fix
+- `tests/` → the tests you must make pass
+- `task_a_description.md` / `task_b_description.md` → instructions for each task
 
-### 📝 Task Descriptions
+## 📝 Task Overview
 
-**Task A**
+### Task A
 
-- Focus: Filtering logic, querying, and statistics computation
-- Bugs: Incorrect filter logic, case-sensitive search, missing priority
-  filtering, improper statistics counting, mislabelling of status and assignee
-  fields
-- Tests: Validate filtering and statistical correctness
+You will debug the logic responsible for:
 
-**Task B**
+- filtering tasks
+- searching inside task titles
+- computing small statistics Some logic is intentionally incorrect. Your goal is
+  to fix it so the tests pass.
 
-- Focus: Recurrence scheduling, overdue detection, and handling of
-  recurring/completed tasks
-- Bugs: Missing date parsing, incorrect recurrence intervals, incomplete monthly
-  logic, improper overdue calculation, incorrect handling of done tasks
-- Tests: Validate recurrence, overdue logic, and proper parsing
+### Task B
 
----
+You will debug logic related to:
 
-### 👩‍💻 How Participants Use the Repo
+- recurring tasks
+- next due date calculation
+- overdue detection Again, some logic is intentionally wrong. Fix it until all
+  tests pass.
 
-1. Clone the repository
-2. Run `pytest` inside each task directory
-3. Fix failing tests using the assigned Copilot mode
-4. Use only the mode assigned by the researcher for each task
-5. Do **not** switch modes or use external resources
-6. Each task has a maximum time limit (20 minutes)
-7. Work entirely inside VS Code with GitHub Copilot
+👉 For both tasks: Your goal is to fix the code until the tests pass (or until
+the 20-minute time limit ends).
 
----
+## 👩‍💻 What You Need To Do Before the Session
 
-### 🧑‍🔬 Modes
+The steps below describe exactly what to do after receiving the study
+instructions.
 
-**Vibe Coding (Ask Mode):**
+1. **Install Python (if you don’t have it already)**
 
-- Conversational prompting and iterative refinement
+   - You need Python 3.9 or higher.
+   - Download from: https://www.python.org/downloads/
+   - Windows users: Make sure to check “Add Python to PATH” during installation.
 
-**Agentic Coding (Agent Mode):**
+2. **Log into GitHub Copilot**
 
-- Autonomous multi-step execution and planning
+   - Before cloning the repository:
+     - Open VS Code/Please download if not already there.
+     - Install the GitHub Copilot extension (if not installed)
+     - Sign in with the GitHub account provided by the researcher. (Password
+       will be regenerated.)
+     - Make sure Copilot is activated
+     - You will use the mode assigned to you (Ask or Agent)
 
----
+3. **Clone the repository**
 
-### 📜 Rules
+   - You can clone it in two ways:
+     - **Option A — Directly in VS Code (recommended)**
+       - Open VS Code
+       - Press Ctrl+Shift+P (or Cmd+Shift+P on Mac)
+       - Type: Git: Clone
+       - Paste the repository link
+       - Choose a folder on your computer
+       - VS Code will ask: “Open cloned repository?” → click Open
+     - **Option B — From GitHub.com**
+       - Go to the repository page
+       - Click “Clone → HTTPS”
+       - Copy the link
+       - Open VS Code → Terminal →
+         - `git clone <paste-link-here>`
 
-- Only the assigned mode may be used per task
-- No switching modes mid-task
-- No external tools or internet
-- Manual editing is allowed
-- You may re-run prompts or agent steps
-- Tasks are isolated; `task_a` and `task_b` must not be mixed
+4. **Open the project in VS Code**
 
----
+   - If VS Code has not already opened the repo:
+     - Go to File → Open Folder
+     - Select copilot-autonomy-study
+     - VS Code loads the whole project structure
 
-### 🎯 Goal of Each Task
+5. **Create a Python environment inside the project**
 
-Identify and fix all intentional bugs so that all tests pass. No need to
-optimize or refactor beyond what the tests require.
+   - This makes sure everything works the same for every participant.
+   - Open the terminal in project directory in VS Code:
+     - **Windows:**
+       - `python -m venv .venv`
+     - **macOS / Linux:**
+       - `python3 -m venv .venv`
+   - You will now see a .venv folder inside the project.
 
----
+6. **Activate the environment**
 
-### ⚙️ Technical Requirements
+   - **Windows:**
+     - `\.venv\Scripts\activate`
+   - **macOS / Linux:**
+     - `source .venv/bin/activate`
+   - Your terminal should now show: (.venv) at the beginning of the line.
 
-- Python 3 installed
-- pytest installed
-- VS Code with GitHub Copilot enabled
+7. **Install pytest**
 
----
+   - Inside the activated environment, run:
+     - `pip install pytest`
+   - This installs the test runner you will use.
 
-**End of Repo Info. Please check the task_a.md and task_b.md files in directories to see descriptions based on the task.**
+8. **Start the assigned task**
+
+   - You will be instructed which task to start with (A or B), as well as which
+     Copilot mode to use.
+   - For Task A:
+     - `cd task_a`
+     - `pytest`
+   - For Task B:
+     - `cd task_b`
+     - `pytest`
+   - Some tests will fail at the start — this is normal.
+
+9. **Fix the code using ONLY your assigned Copilot mode**
+
+   - Ask Mode → conversational help and suggestions
+   - Agent Mode → multi-step autonomous actions
+   - **Rules:**
+     - Do not switch modes
+     - Do not use external websites or tools
+     - Manual editing is allowed
+     - You may re-run pytest as much as needed
+
+10. **Time Limit: 20 minutes per task**
+    - When the time is up, stop immediately.
+    - You will then proceed to the next step of the study.
+
+Once you finish the assigned task(s), the experiment continues with
+questionnaires and at the end of two tasks a short interview.
