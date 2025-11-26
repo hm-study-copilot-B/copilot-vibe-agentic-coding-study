@@ -41,7 +41,7 @@ copilot-autonomy-study/
 │   │   └── utils.py
 │   └── tests/
 │       └── test_task_b.py
-│   └── test_task_a.py
+│   └── task_b_description.md  
 └── README.md
 ```
 
