@@ -31,32 +31,11 @@ copilot-autonomy-study/
 └── README.md
 ```
 
-- `src/` → the code you will fix
-- `tests/` → the tests you must make pass
-- `task_a_description.md` / `task_b_description.md` → instructions for each task
-
 ## 📝 Task Overview
 
-### Task A
-
-You will debug the logic responsible for:
-
-- filtering tasks
-- searching inside task titles
-- computing small statistics Some logic is intentionally incorrect. Your goal is
-  to fix it so the tests pass.
-
-### Task B
-
-You will debug logic related to:
-
-- recurring tasks
-- next due date calculation
-- overdue detection Again, some logic is intentionally wrong. Fix it until all
-  tests pass.
-
-👉 For both tasks: Your goal is to fix the code until the tests pass (or until
-the 20-minute time limit ends).
+- `task_a_description.md` / `task_b_description.md` → instructions for each task to have an overview.
+- `tests/` → the tests you must make pass
+- `src/` → the code base per Task
 
 ## 👩‍💻 What You Need To Do Before the Session
 
@@ -96,12 +75,13 @@ instructions.
        - Open VS Code → Terminal →
          - `git clone <paste-link-here>`
 
-4. **Open the project in VS Code**
+4. **Open the project in VS Code and Create a new branch with develop/participant_id (given by the researcher)**
 
    - If VS Code has not already opened the repo:
      - Go to File → Open Folder
-     - Select copilot-autonomy-study
+     - Select copilot-vibe-agentic-coding-study
      - VS Code loads the whole project structure
+     - Then please create your own branch, you can ask for the instructions.
 
 5. **Create a Python environment inside the project**
 
