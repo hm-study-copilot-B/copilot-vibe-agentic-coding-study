@@ -115,4 +115,4 @@ optimize or refactor beyond what the tests require.
 
 ---
 
-**End of Repo Info.**
+**End of Repo Info. Please check the task_a.md and task_b.md files in directories to see descriptions based on the task.**
