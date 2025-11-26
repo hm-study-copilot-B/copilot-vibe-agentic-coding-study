@@ -75,7 +75,7 @@ instructions.
        - Click “Clone → HTTPS”
        - Copy the link
        - Open VS Code → Terminal →
-         - `git clone <paste-link-here>`
+         - `git clone https://github.com/hm-study-copilot-B/copilot-vibe-agentic-coding-study`
 
 4. **Open the project in VS Code and Create a new branch with develop/participant_id (given by the researcher)**
 
