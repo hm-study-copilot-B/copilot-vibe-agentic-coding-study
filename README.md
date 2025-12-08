@@ -6,8 +6,8 @@ This repository contains coding tasks for a study comparing two modes of GitHub 
 
 - **Group 1 (GAIA-inspired Tasks):** Data analysis and script creation tasks (e.g., CSV processing).
   - Assigned tasks: `task_group_1/task_1a/` and `task_group_1/task_1b/`.
-- **Group 2 (SWE-inspired Tasks):** Debugging and feature implementation in existing codebases.
-  - Assigned tasks: `task_group_2/` (to be added).
+- **Group 2 (SWE-inspired Tasks):** Feature implementation in Matplotlib.
+  - Assigned tasks: `task_group_2/task_2a/` and `task_group_2/task_2b/`.
 
 You will be assigned to one group based on the study design.
 
@@ -16,7 +16,9 @@ You will be assigned to one group based on the study design.
 - `task_group_1/`: Tasks for Group 1.
   - `task_1a/`: Invasive species data analysis.
   - `task_1b/`: Mollusk bead age analysis.
-- `task_group_2/`: Tasks for Group 2 (debugging/feature tasks in codebases).
+- `task_group_2/`: Tasks for Group 2.
+  - `task_2a/`: Smooth transitions between plots in Matplotlib.
+  - `task_2b/`: Dark mode toggle for Matplotlib.
 - Each task folder has its own README with instructions, code, tests, and data.
 
 ## Experiment Process (Step-by-Step)
