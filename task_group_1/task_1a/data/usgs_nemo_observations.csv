@@ -1,0 +1,11 @@
+species_common_name,data_source,observation_year,zip_code,notes
+Ocellaris Clownfish,USGS,2015,33040,Recorded in residential canal
+Ocellaris Clownfish,USGS,2016,96706,Reef-adjacent sighting
+Ocellaris Clownfish,USGS,2018,96706,Duplicate location entry
+Ocellaris Clownfish,USGS,2012,33040,Earlier sighting
+Ocellaris Clownfish,USGS,2017,96701,Confirmed pet-release
+Ocellaris Clownfish,USGS,2021,96701,Post-2020 (should not count)
+Ocellaris Clownfish,AquariumTradeDB,2015,96706,Non-USGS source (ignore)
+Ocellaris Clownfish,USGS,2019,96734,Local lagoon observation
+Ocellaris Clownfish,USGS,2020,96734,Year is 2020 (should not count)
+Ocellaris Clownfish,USGS,2014,60601,Isolated aquarium-release report

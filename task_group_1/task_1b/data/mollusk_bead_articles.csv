@@ -1,0 +1,8 @@
+museum_number,accepted_species_name,journal,publication_year,min_age_thousand_years_at_least,notes
+2012,5015.17,Nassarius gibbosulus,,,
+,Nassarius gibbosulus,Science Advances,2021,100,Bead age study 1
+,Nassarius gibbosulus,Science Advances,2021,120,Bead age study 2
+,Nassarius gibbosulus,Science Advances,2021,90,Bead age study 3
+,Nassarius gibbosulus,Nature,2021,80,Different journal
+,Nassarius gibbosulus,Science Advances,2020,95,Wrong year
+,Other species,Science Advances,2021,50,Different species

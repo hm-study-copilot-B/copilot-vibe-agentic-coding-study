@@ -1,139 +1,58 @@
-# From Collaboration to Delegation
+# Copilot Vibe Agentic Coding Study
 
-Evaluating Developer Efficiency and Perception in Vibe and Agentic Coding using
-Github Copilot and Gemini 3 Pro.
+This repository contains coding tasks for a study comparing two modes of GitHub Copilot: Vibe Coding (Ask Mode) and Agentic Coding (Agent Mode).
 
-## 🗂️ Repository Purpose
+## Participant Groups
 
-This repository contains two small debugging tasks for the research study. The
-goal is to compare how developers work with two levels of AI autonomy in GitHub
-Copilot:
+- **Group 1 (GAIA-inspired Tasks):** Data analysis and script creation tasks (e.g., CSV processing).
+  - Assigned tasks: `task_group_1/task_1a/` and `task_group_1/task_1b/`.
+- **Group 2 (SWE-inspired Tasks):** Debugging and feature implementation in existing codebases.
+  - Assigned tasks: `task_group_2/` (to be added).
 
-- **Vibe Coding (Copilot Ask Mode)**
-- **Agentic Coding (Copilot Agent Mode)**
+You will be assigned to one group based on the study design.
 
-Each task is done using only one mode, assigned by the researcher. If Task A is
-completed with Agent Mode, Task B must be completed with Ask Mode — and the
-other way around. Switching modes or models during a task is not allowed.
+## Repository Contents
 
-## 📁 Repository Structure
+- `task_group_1/`: Tasks for Group 1.
+  - `task_1a/`: Invasive species data analysis.
+  - `task_1b/`: Mollusk bead age analysis.
+- `task_group_2/`: Tasks for Group 2 (debugging/feature tasks in codebases).
+- Each task folder has its own README with instructions, code, tests, and data.
 
-```
-copilot-autonomy-study/
-├── task_a/
-│   ├── src/
-│   ├── tests/
-│   └── task_a_description.md
-├── task_b/
-│   ├── src/
-│   ├── tests/
-│   └── task_b_description.md
-└── README.md
-```
+## Experiment Process (Step-by-Step)
 
-## 📝 Task Overview
+The study takes 60 minutes total. Follow these steps in order:
 
-- `task_a_description.md` / `task_b_description.md` → instructions for each task to have an overview.
-- `tests/` → the tests you must make pass
-- `src/` → the code base per Task
+1. **Phase 1: Onboarding & Consent (15 minutes)**
+   - Arrive and review the study procedure.
+   - Sign consent form.
+   - Complete a background survey (experience with AI tools, programming).
 
-## 👩‍💻 What You Need To Do Before the Session
+2. **Phase 2: Task 1 Coding Session (15 minutes)**
+   - The researcher assigns you a Copilot mode (Vibe or Agentic) for this task.
+   - Navigate to your assigned task folder (based on your group).
+   - Read the task README and implement the code using the assigned mode.
+   - Screen recording and time tracking will occur.
 
-The steps below describe exactly what to do after receiving the study
-instructions.
+3. **Phase 3: Post-Task Survey 1 (5 minutes)**
+   - Complete a short survey rating the mode you just used.
+   - Sample questions (Likert scale: 1-5, Strongly Disagree to Strongly Agree):
+     - "I trusted the AI suggestions."
+     - "The mode aligned with my workflow."
+     - "I felt in control of the coding process."
+   - Write a brief reflection (e.g., "What was frustrating?").
 
-1. **Install Python (if you don’t have it already)**
+4. **Phase 4: Task 2 Coding Session (15 minutes)**
+   - Switch to the other Copilot mode.
+   - Work on the second task in your group.
+   - Screen recording continues.
 
-   - You need Python 3.9 or higher.
-   - Download from: https://www.python.org/downloads/
-   - Windows users: Make sure to check “Add Python to PATH” during installation.
+5. **Phase 5: Post-Task Survey 2 (5 minutes)**
+   - Rate the second mode with similar Likert questions.
+   - Write a brief reflection.
 
-2. **Log into VS Code/ GitHub Copilot**
+6. **Phase 6: Comparative Interview (15 minutes)**
+   - Discuss your experiences with both modes.
+   - Answer comparative questions (e.g., "Which mode was more efficient?").
 
-   - Before cloning the repository:
-     - Open VS Code/Please download if not already there.
-     - Sign in with the VS Code provided by the researcher. (Password
-       will be regenerated.) You can keep yours if you already signed in.
-     - Install the GitHub Copilot extension (if not installed)
-     - Sign in with the GitHub account provided by the researcher. (Password
-       will be regenerated)
-     - Make sure Copilot is activated
-     - You will use the mode assigned to you (Ask or Agent)
-
-3. **Clone the repository**
-
-   - You can clone it in two ways:
-     - **Option A — Directly in VS Code (recommended)**
-       - Open VS Code
-       - Press Ctrl+Shift+P (or Cmd+Shift+P on Mac)
-       - Type: Git: Clone
-       - Paste the repository link
-       - Choose a folder on your computer
-       - VS Code will ask: “Open cloned repository?” → click Open
-     - **Option B — From GitHub.com**
-       - Go to the repository page
-       - Click “Clone → HTTPS”
-       - Copy the link
-       - Open VS Code → Terminal →
-         - `git clone https://github.com/hm-study-copilot-B/copilot-vibe-agentic-coding-study`
-
-4. **Open the project in VS Code and Create a new branch with develop/participant_id (given by the researcher)**
-
-   - If VS Code has not already opened the repo:
-     - Go to File → Open Folder
-     - Select copilot-vibe-agentic-coding-study
-     - VS Code loads the whole project structure
-     - Then please create your own branch, you can ask for the instructions.
-
-5. **Create a Python environment inside the project**
-
-   - This makes sure everything works the same for every participant.
-   - Open the terminal in project directory in VS Code:
-     - **Windows:**
-       - `python -m venv .venv`
-     - **macOS / Linux:**
-       - `python3 -m venv .venv`
-   - You will now see a .venv folder inside the project.
-
-6. **Activate the environment**
-
-   - **Windows:**
-     - `\.venv\Scripts\activate`
-   - **macOS / Linux:**
-     - `source .venv/bin/activate`
-   - Your terminal should now show: (.venv) at the beginning of the line.
-
-7. **Install pytest**
-
-   - Inside the activated environment, run:
-     - `pip install pytest`
-   - This installs the test runner you will use.
-
-8. **Start the assigned task**
-
-   - You will be instructed which task to start with (A or B), as well as which
-     Copilot mode to use.
-   - For Task A:
-     - `cd task_a`
-     - `pytest`
-   - For Task B:
-     - `cd task_b`
-     - `pytest`
-   - Some tests will fail at the start — this is normal.
-
-9. **Fix the code using ONLY your assigned Copilot mode**
-
-   - Ask Mode → conversational help and suggestions
-   - Agent Mode → multi-step autonomous actions
-   - **Rules:**
-     - Do not switch modes
-     - Do not use external websites or tools
-     - Manual editing is allowed
-     - You may re-run pytest as much as needed
-
-10. **Time Limit: 20 minutes per task**
-    - When the time is up, stop immediately.
-    - You will then proceed to the next step of the study.
-
-Once you finish the assigned task(s), the experiment continues with
-questionnaires and at the end of two tasks a short interview.
+**Important:** Stick to the time limits. Do not switch modes mid-task. The researcher will guide you through each phase.
