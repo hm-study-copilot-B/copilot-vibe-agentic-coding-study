@@ -23,68 +23,71 @@
 
 ---
 
-# Task 2a: Add Smooth Transitions Between Plots in Matplotlib
+# Task 2a: Fix CSV Parser Case Sensitivity Bug
 
 ## Objective
 
-Implement a new functionality that enables smooth animations/transitions between different states of a plot in Matplotlib.
+**This is a bug-fixing task.** A CSV configuration parser was implemented to read special commands from CSV files, but it incorrectly assumes all commands must be UPPERCASE. Real users create files by hand and use lowercase commands, causing the parser to crash.
 
-## Requirements
+## Issue Description
 
-### 1. Create `smooth_transition()` function
+The `parse_csv_with_commands()` function reads CSV files that can contain special command lines starting with `#` (like `#SKIP 2` or `#DELIMITER tab`). However, the parser only recognizes UPPERCASE commands and crashes on lowercase ones.
 
-```python
-def smooth_transition(from_data, to_data, duration=1.0, fps=30, **kwargs):
-    """
-    Create a smooth animation transitioning between data states.
-    
-    Parameters:
-    - from_data: Initial data state
-    - to_data: Final data state
-    - duration: Transition duration in seconds (default: 1.0)
-    - fps: Frames per second (default: 30)
-    - **kwargs: Additional options (easing, plot_type, etc.)
-    
-    Returns:
-    - Animation object
-    """
-    ...
+### Example of the Problem
+
+This file crashes:
+```
+#skip 2
+#delimiter tab
+Name	Value	Error
+Alice	1.5	0.1
 ```
 
-The function should:
-- Take initial and final data states
-- Create a smooth animation transitioning between the states
-- Support different plot types (line, scatter, bar, etc.)
-- Allow customization of transition duration and frames per second
-- Support transitions of various plot properties:
-  - Data values (y-values in line plots, heights in bar charts, etc.)
-  - Colors
-  - Sizes/widths
-  - Positions
-- Provide options for different easing functions (linear, ease-in, ease-out, etc.)
-
-### 2. Create `transition_plot_state()` function
-
-```python
-def transition_plot_state(fig_from, fig_to, duration=1.0, fps=30):
-    """
-    Transition between two completely different figure states.
-    
-    Parameters:
-    - fig_from: Initial figure state
-    - fig_to: Final figure state
-    - duration: Transition duration in seconds
-    - fps: Frames per second
-    
-    Returns:
-    - Animation object
-    """
-    ...
+But this works fine:
+```
+#SKIP 2
+#DELIMITER tab
+Name	Value	Error
+Alice	1.5	0.1
 ```
 
-### 3. Create a demo
+Since users create these files by hand, the parser should be case-insensitive like other tools.
 
-Create `src/demo.py` showcasing various transition types.
+## How to Reproduce
+
+```python
+from solution import parse_csv_with_commands
+
+# This crashes with "Unrecognized command: #skip 2"
+data = """#skip 2
+#delimiter tab
+Name	Value
+Alice	1.5
+Bob	2.3"""
+
+result = parse_csv_with_commands(data)
+```
+
+## Your Task
+
+**Fix the bug in `src/solution.py`** to make command parsing case-insensitive.
+
+The parser currently checks commands like:
+```python
+if line.startswith('#SKIP'):
+    # handle skip
+elif line.startswith('#DELIMITER'):
+    # handle delimiter
+```
+
+**Hint**: Convert the line to uppercase before checking, or use case-insensitive comparison.
+
+### Expected Behavior
+
+After fixing:
+- `#SKIP 2`, `#skip 2`, `#Skip 2` should all work
+- `#DELIMITER tab`, `#delimiter tab`, `#Delimiter tab` should all work
+- The parser should handle mixed case in command names
 
 ## Files Structure
 
@@ -92,11 +95,18 @@ Create `src/demo.py` showcasing various transition types.
 .
 ├─ README.md                # This file
 ├─ src/
-│  ├─ solution.py           # Implement your functions here
+│  ├─ solution.py           # FIX THE BUG HERE
 │  └─ demo.py               # Demo script
 └─ tests/
-   └─ test_solution.py      # Automated tests
+   └─ test_solution.py      # Tests
 ```
+
+## Debugging Tips
+
+1. Run the tests: `python -m pytest tests/ -v`
+2. Try parsing files with lowercase commands
+3. Check where command recognition happens
+4. Use `.upper()` or `.lower()` for case-insensitive comparison
 
 ## Constraints
 

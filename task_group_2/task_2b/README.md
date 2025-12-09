@@ -23,46 +23,81 @@
 
 ---
 
-# Task 2b: Add Dark Mode Toggle to Matplotlib
+# Task 2b: Fix JSON Config Validation Bug
 
 ## Objective
 
-Add a new functionality that allows users to toggle any existing plot to dark mode with a single function call.
+**This is a bug-fixing task.** A configuration file validator was implemented to validate JSON config files against a schema, but it fails to validate boolean values correctly when they're represented as strings (like `"true"` or `"false"`). This causes valid config files to be rejected.
 
-## Requirements
+## Issue Description
 
-### 1. Create `toggle_dark_mode()` function
+The `validate_config()` function validates configuration files against a schema. The schema specifies expected types for each field. However, when boolean values are provided as strings (common in config files from environment variables or CLI), the validator incorrectly rejects them.
 
-```python
-def toggle_dark_mode(ax=None, fig=None):
-    """
-    Toggle dark mode on a plot.
-    
-    Parameters:
-    - ax: Specific axis to apply dark mode (optional)
-    - fig: Figure to apply dark mode (optional)
-    - If neither is specified, applies to current figure
-    
-    Returns:
-    - None (modifies plot in place)
-    """
-    ...
+### Example of the Problem
+
+This config is rejected but should be valid:
+```json
+{
+  "debug": "true",
+  "max_connections": "100",
+  "timeout": "30.5"
+}
 ```
 
-The function should:
-- Be applicable to either a specific axis, a figure, or the current figure if none is specified
-- Convert the plot background to a dark color (e.g., #121212)
-- Invert text colors from dark to light
-- Adjust plot elements (grid lines, tick marks, etc.) to be visible on dark background
-- Preserve the original colors of data elements (lines, points, bars) or provide an option to adjust them for better visibility
+Schema expects:
+```json
+{
+  "debug": "bool",
+  "max_connections": "int",
+  "timeout": "float"
+}
+```
 
-### 2. Make it reversible
+The validator should convert string representations to proper types, but currently it only handles `"int"` and `"float"`, not `"bool"`.
 
-Calling `toggle_dark_mode()` again should toggle back to light mode.
+## How to Reproduce
 
-### 3. Create a demo
+```python
+from solution import validate_config
 
-Create `src/demo.py` showing the functionality in action.
+schema = {
+    "debug": "bool",
+    "port": "int"
+}
+
+config = {
+    "debug": "true",  # String "true" should convert to bool
+    "port": "8080"    # String "8080" should convert to int
+}
+
+# This raises ValueError but should succeed
+result = validate_config(config, schema)
+```
+
+## Your Task
+
+**Fix the bug in `src/solution.py`** to handle boolean string conversion.
+
+The validator currently has code for `int` and `float` conversion:
+```python
+if expected_type == 'int':
+    value = int(value)
+elif expected_type == 'float':
+    value = float(value)
+```
+
+**Add support for `'bool'` type** that converts:
+- `"true"`, `"True"`, `"TRUE"`, `"1"` → `True`
+- `"false"`, `"False"`, `"FALSE"`, `"0"`, `""` → `False`
+
+### Expected Behavior
+
+After fixing:
+- String `"true"` converts to boolean `True`
+- String `"false"` converts to boolean `False`
+- Case-insensitive: `"True"`, `"TRUE"` all work
+- Numeric strings: `"1"` → `True`, `"0"` → `False`
+- Empty string `""` → `False`
 
 ## Files Structure
 
@@ -70,20 +105,15 @@ Create `src/demo.py` showing the functionality in action.
 .
 ├─ README.md                # This file
 ├─ src/
-│  ├─ solution.py           # Implement your function here
+│  ├─ solution.py           # FIX THE BUG HERE
 │  └─ demo.py               # Demo script
 └─ tests/
-   └─ test_solution.py      # Automated tests
+   └─ test_solution.py      # Tests
 ```
 
-## Constraints
+## Debugging Tips
 
-- Python 3, use matplotlib and numpy.
-- Do not modify test files.
-
-## Hints
-
-- Store original colors to enable toggling back.
-- Use `ax.set_facecolor()` for background.
-- Modify `ax.spines`, `ax.tick_params`, and text elements.
-- Consider using a global or figure-level state to track dark mode status.
+1. Run the tests: `python -m pytest tests/ -v`
+2. Check the type conversion section in `validate_config()`
+3. Add a new `elif` clause for `expected_type == 'bool'`
+4. Use `.lower()` for case-insensitive string comparison

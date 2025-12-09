@@ -1,65 +1,89 @@
 """
-Smooth Transitions for Matplotlib
-Implement functions to create smooth animations between plot states.
+CSV Parser with Command Support
+BUGGY IMPLEMENTATION - Commands are case-sensitive but should not be!
 """
 
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-import numpy as np
 
-
-def smooth_transition(from_data, to_data, duration=1.0, fps=30, **kwargs):
+def parse_csv_with_commands(data):
     """
-    Create a smooth animation transitioning between data states.
+    Parse a CSV file that may contain special command lines.
+    
+    Command lines start with '#' and control parsing behavior:
+    - #SKIP N: Skip N data rows
+    - #DELIMITER <char>: Set delimiter (comma, tab, space, semicolon)
+    - #COMMENT <char>: Set comment character
+    
+    BUG: Currently only recognizes UPPERCASE commands, but should be case-insensitive.
     
     Parameters:
-    - from_data: Initial data state (array-like)
-    - to_data: Final data state (array-like)
-    - duration: Transition duration in seconds (default: 1.0)
-    - fps: Frames per second (default: 30)
-    - **kwargs: Additional options:
-        - plot_type: 'line', 'scatter', 'bar' (default: 'line')
-        - easing: 'linear', 'ease_in', 'ease_out', 'ease_in_out' (default: 'linear')
-        - ax: Existing axes to use (optional)
+    - data: String containing CSV data with optional command lines
     
     Returns:
-    - Animation object
+    - Dictionary with keys: 'rows' (list of data rows), 'skip', 'delimiter', 'comment_char'
     """
-    ...
-
-
-def transition_plot_state(fig_from, fig_to, duration=1.0, fps=30):
-    """
-    Transition between two completely different figure states.
+    lines = data.strip().split('\n')
     
-    Parameters:
-    - fig_from: Initial figure state
-    - fig_to: Final figure state
-    - duration: Transition duration in seconds
-    - fps: Frames per second
+    skip_rows = 0
+    delimiter = ','
+    comment_char = None
+    rows = []
     
-    Returns:
-    - Animation object
-    """
-    ...
-
-
-# Easing functions
-def ease_linear(t):
-    """Linear easing: no acceleration."""
-    ...
-
-
-def ease_in(t):
-    """Ease in: accelerate from zero velocity."""
-    ...
-
-
-def ease_out(t):
-    """Ease out: decelerate to zero velocity."""
-    ...
-
-
-def ease_in_out(t):
-    """Ease in-out: accelerate then decelerate."""
-    ...
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # BUG: Commands are checked with exact case matching
+        # Should convert to uppercase for case-insensitive comparison
+        if line.startswith('#SKIP'):
+            # Parse skip command: #SKIP 2
+            parts = line.split()
+            if len(parts) >= 2:
+                skip_rows = int(parts[1])
+                
+        elif line.startswith('#DELIMITER'):
+            # Parse delimiter command: #DELIMITER tab
+            parts = line.split(maxsplit=1)
+            if len(parts) >= 2:
+                delim_name = parts[1].strip()
+                if delim_name == 'tab':
+                    delimiter = '\t'
+                elif delim_name == 'space':
+                    delimiter = ' '
+                elif delim_name == 'comma':
+                    delimiter = ','
+                elif delim_name == 'semicolon':
+                    delimiter = ';'
+                else:
+                    delimiter = delim_name
+                    
+        elif line.startswith('#COMMENT'):
+            # Parse comment command: #COMMENT !
+            parts = line.split(maxsplit=1)
+            if len(parts) >= 2:
+                comment_char = parts[1].strip()
+                
+        elif line.startswith('#'):
+            # Unrecognized command
+            raise ValueError(f'Unrecognized command: {line}')
+        else:
+            # Regular data line
+            if comment_char and line.startswith(comment_char):
+                continue  # Skip commented data lines
+            rows.append(line)
+    
+    # Apply skip_rows
+    if skip_rows > 0:
+        rows = rows[skip_rows:]
+    
+    # Parse rows with delimiter
+    parsed_rows = []
+    for row in rows:
+        parsed_rows.append([cell.strip() for cell in row.split(delimiter)])
+    
+    return {
+        'rows': parsed_rows,
+        'skip': skip_rows,
+        'delimiter': delimiter,
+        'comment_char': comment_char
+    }
