@@ -12,6 +12,7 @@
    - Navigate to the task directory: `cd task_group_1/task_1b/`
    - (Optional) Create a virtual environment for isolation: `python -m venv venv` then activate it
    - Install testing dependencies: `python -m pip install pytest` (use `python -m pip` instead of `pip` directly, as `pip` may not be in PATH)
+   - *Note for macOS/Apple users: If you encounter issues, you may need to install Python via Homebrew (`brew install python3`) or use `python3` instead of `python`*
 
 3. Implement the solution
    - Read the task description below

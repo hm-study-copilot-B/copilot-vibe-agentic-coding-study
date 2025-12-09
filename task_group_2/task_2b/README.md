@@ -12,6 +12,7 @@
    - Navigate to the task directory: `cd task_group_2/task_2b/`
    - (Optional) Create a virtual environment for isolation: `python -m venv venv` then activate it
    - Install dependencies: `python -m pip install matplotlib numpy`
+   - *Note for macOS/Apple users: If you encounter issues, you may need to install Python via Homebrew (`brew install python3`) or use `python3` instead of `python`. For matplotlib on macOS, you might also need to install with `brew install python-tk` for GUI support*
 
 3. Implement the solution
    - Read the task description below
