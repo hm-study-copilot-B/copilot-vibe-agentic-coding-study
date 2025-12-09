@@ -83,3 +83,87 @@ Tests check the correct minimum age is returned.
 - Find species from museum_number "2012,5015.17".
 - Filter by species, journal "Science Advances", year 2021.
 - Find min of `min_age_thousand_years_at_least`.
+
+---
+
+# Görev Grubu 1: Veri Analizi Görevleri
+
+## Görev Grubu 1'i Tamamlama Adımları
+
+1. Python'u Yükleyin
+   - Python 3.6+ sürümünü [python.org](https://www.python.org/downloads/) adresinden indirip yükleyin
+   - Kurulumu doğrulayın: `python --version`
+   - pip'in mevcut olduğundan emin olun: `pip --version`
+     - Değilse, `python get-pip.py` (bootstrap.pypa.io'dan indirin) veya `python -m ensurepip --upgrade` ile yükleyin
+
+2. Proje ortamını kurun
+   - Görev dizinine gidin: `cd task_group_1/task_1b/`
+   - (İsteğe bağlı) İzolasyon için sanal ortam oluşturun: `python -m venv venv` ardından aktif edin
+   - Test bağımlılıklarını yükleyin: `python -m pip install pytest` (PATH'te olmayabileceğinden `pip` yerine `python -m pip` kullanın)
+
+3. Çözümü uygulayın
+   - Aşağıdaki görev açıklamasını okuyun
+   - Gerekli fonksiyonu uygulamak için `src/solution.py` dosyasını düzenleyin
+
+4. Çözümü çalıştırın ve doğrulayın
+   - Testleri çalıştırın: `python -m pytest` (`task_1b/` dizininden)
+   - Tüm testlerin geçtiğinden emin olun
+
+# GAIA-b — British Museum Mollusk Kabuğu & Boncuk Yaşı (Veri Analizi Görevi)
+
+## Görev Özeti
+
+Belirli bir türün kabuklarından yapılmış boncukların minimum yaşını bulmak için mollusk boncuk araştırma makalelerinin bulunduğu bir CSV dosyasını analiz edin. Tür, bir British Museum nesnesine bağlıdır.
+
+British Museum "2012,5015.17" nesnesiyle ilişkili türle ilgili 2021 *Science Advances* makalelerinden "en az" minimum yaşı (bin yıl cinsinden) bulun.
+
+## Dosyalar ve Yapı
+
+```
+.
+├─ README.md                # Bu dosya
+├─ data/
+│  └─ mollusk_bead_articles.csv
+├─ src/
+│  └─ solution.py           # Çözümünüzü buraya uygulayın
+└─ tests/
+   └─ test_solution.py      # Otomatik testler
+```
+
+### data/mollusk_bead_articles.csv
+
+Sütunları içeren CSV: `museum_number`, `accepted_species_name`, `journal`, `publication_year`, `min_age_thousand_years_at_least`, vb.
+
+## Uygulamanız Gerekenler
+
+`src/solution.py` dosyasında uygulayın:
+
+```python
+def find_min_bead_age(csv_path: str = "data/mollusk_bead_articles.csv") -> int:
+    """
+    British Museum nesnesi '2012,5015.17' ile ilişkili mollusk türünden yapılmış boncukların
+    2021 Science Advances makalelerinde bildirilen minimum 'en az' yaşını (bin yıl cinsinden) bulun.
+    """
+    ...
+```
+
+## Girdi / Çıktı
+
+- **Girdi:** CSV dosya yolu (varsayılan: "data/mollusk_bead_articles.csv")
+- **Çıktı:** Minimum yaşın tam sayı değeri.
+
+## Kısıtlamalar
+
+- Python 3, sadece standart kütüphane.
+- CSV veya test dosyalarını değiştirmeyin.
+
+## Değerlendirme
+
+Testler doğru minimum yaşın döndürüldüğünü kontrol eder.
+
+## İpuçları
+
+- `csv` modülünü kullanın.
+- museum_number "2012,5015.17" den türü bulun.
+- Türe, "Science Advances" dergisine ve 2021 yılına göre filtreleyin.
+- `min_age_thousand_years_at_least` değerinin minimumunu bulun.

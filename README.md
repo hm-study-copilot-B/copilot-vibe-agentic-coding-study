@@ -4,22 +4,24 @@ This repository contains coding tasks for a study comparing two modes of GitHub 
 
 ## Participant Groups
 
-- **Group 1 (GAIA-inspired Tasks):** Data analysis and script creation tasks (e.g., CSV processing).
+- **Group 1 (GAIA-inspired Tasks):** Data analysis and CSV processing tasks using Python's standard library.
   - Assigned tasks: `task_group_1/task_1a/` and `task_group_1/task_1b/`.
-- **Group 2 (SWE-inspired Tasks):** Feature implementation in Matplotlib.
+- **Group 2 (SWE-inspired Tasks):** Bug-fixing tasks in Python configuration parsers.
   - Assigned tasks: `task_group_2/task_2a/` and `task_group_2/task_2b/`.
 
 You will be assigned to one group based on the study design.
 
 ## Repository Contents
 
-- `task_group_1/`: Tasks for Group 1.
-  - `task_1a/`: Invasive species data analysis.
-  - `task_1b/`: Mollusk bead age analysis.
-- `task_group_2/`: Tasks for Group 2.
-  - `task_2a/`: Smooth transitions between plots in Matplotlib.
-  - `task_2b/`: Dark mode toggle for Matplotlib.
-- Each task folder has its own README with instructions, code, tests, and data.
+- `task_group_1/`: Data Analysis Tasks (Group 1)
+  - `task_1a/`: **GAIA-a - Invasive Species Research**: Analyze USGS CSV data to find unique ZIP codes where clownfish (from *Finding Nemo*) was observed as nonnative before 2020. Filter by species name, data source, and observation year. Return sorted list of 5-digit ZIP codes.
+  - `task_1b/`: **GAIA-b - British Museum Mollusk Shell & Bead Age**: Analyze research articles CSV to find the minimum age of beads made from a specific mollusk species linked to British Museum object "2012,5015.17". Filter by journal (Science Advances), publication year (2021), and return minimum age in thousands of years.
+
+- `task_group_2/`: Software Engineering Bug-Fixing Tasks (Group 2)
+  - `task_2a/`: **CSV Parser Case Sensitivity Bug**: Fix a CSV configuration parser that crashes on lowercase commands. The parser reads special command lines (like `#SKIP` or `#DELIMITER`) but only recognizes UPPERCASE versions. Make command parsing case-insensitive so `#skip`, `#Skip`, and `#SKIP` all work.
+  - `task_2b/`: **JSON Config Validation Bug**: Fix a configuration validator that fails to handle boolean values represented as strings. Add support for converting string representations (`"true"`, `"false"`, `"1"`, `"0"`) to proper boolean types, similar to existing int/float conversion.
+
+- Each task folder has its own README with detailed instructions, starter code, tests, and data files (for Group 1).
 
 ## Experiment Process (Step-by-Step)
 
