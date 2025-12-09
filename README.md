@@ -27,7 +27,7 @@ You will be assigned to one group based on the study design.
 
 The study takes 60 minutes total. Follow these steps in order:
 
-1. **Phase 1: Onboarding & Consent (15 minutes)**
+1. **Phase 1: Onboarding & Consent (10 minutes)**
    - Arrive and review the study procedure.
    - Sign consent form.
    - Complete a background survey (experience with AI tools, programming).
@@ -55,7 +55,7 @@ The study takes 60 minutes total. Follow these steps in order:
    - Rate the second mode with similar Likert questions.
    - Write a brief reflection.
 
-6. **Phase 6: Comparative Interview (15 minutes)**
+6. **Phase 6: Comparative Interview (10 minutes)**
    - Discuss your experiences with both modes.
    - Answer comparative questions (e.g., "Which mode was more efficient?").
 
